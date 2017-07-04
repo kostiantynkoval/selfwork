@@ -1,0 +1,19 @@
+<h2>Add a product</h2>
+<form #myForm="ngForm" (ngSubmit)="addProduct(); myForm.reset()">
+  <p><input type="number" required name="id" [(ngModel)]="id" placeholder="Enter ID"></p>
+  <p><input type="text" required name="name" [(ngModel)]="name"  placeholder="Enter Name"></p>
+  <p>
+    <select [(ngModel)]="category" required name="category" placeholder="Set Category">
+      <option [value]="1">1</option>
+      <option [value]="2">2</option>
+      <option [value]="3">3</option>
+    </select>
+  </p>
+  <p><input type="number" name="price" [(ngModel)]="price" placeholder="Enter Price"></p>
+  <p><input type="submit" value="Add Product"/></p>
+</form>
+<p>Id: {{ product.id }} <br>
+
+<p>Name: {{ product.name }} <br>
+
+<p>Category: {{ product.category }} <br>

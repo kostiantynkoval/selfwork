@@ -1,0 +1,24 @@
+<p>rows selected: {{rows}}</p>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Categ</th>
+      <th>Del</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of (products | showorhide: categoryID | firstNRows: rows)">
+      <td>{{product.id}}</td>
+      <td>{{product.name}}</td>
+      <td [style.color]="isRed(product.price)?'red':'inherit'">{{product.price}}</td>
+      <td>{{product.category}}</td>
+      <td (click)="delElem(product)">[X]</td>
+    </tr>
+  </tbody>
+
+</table>  
+
+<!-- [style.display]="product.category!=categoryID?'none':'table-row'" -->
