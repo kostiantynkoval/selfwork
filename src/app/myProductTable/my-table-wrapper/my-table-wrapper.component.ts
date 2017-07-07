@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 
 import { Product } from "./../product";
 import { PRODUCTS } from "./../mock-product";
@@ -9,7 +9,8 @@ import { MyTableDataService } from './../my-table-data.service';
   moduleId: module.id,
   selector: 'app-my-table-wrapper',
   templateUrl: './my-table-wrapper.component.html',
-  styleUrls: ['./my-table-wrapper.component.css']
+  styleUrls: ['./my-table-wrapper.component.css'],
+  providers: [MyTableDataService]
 })
 export class MyTableWrapperComponent implements OnInit {
 
@@ -17,25 +18,23 @@ export class MyTableWrapperComponent implements OnInit {
     products: Product[];
     categoryValue: number;
 
+    constructor(private myTableDataService: MyTableDataService){}
+
     ngOnInit() {
-      this.products = PRODUCTS;
+      this.products = this.myTableDataService.getProducts();
       this.categoryValue = 0;
     }
 
     selectedProduct(data):void {
-      this.categoryValue = data;
+      this.categoryValue = data.target.value;
     }
 
-    deleteProduct(product):void {
-        let index = this.products.indexOf(product);
-        console.log(index);
-        if (index!=-1) {
-            this.products.splice(index, 1);
-        }
+    onDelete(product){
+        this.myTableDataService.deleteProduct(product);
     }
 
-    addProduct(product):void {
-      this.products.push(product);
+    onAdd(product){
+        this.myTableDataService.addProduct(product);
     }
 
     ngOnChanges() {

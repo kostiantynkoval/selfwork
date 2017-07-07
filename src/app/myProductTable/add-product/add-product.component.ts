@@ -2,12 +2,17 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 import { Product } from "./../product";
 
+import { MyTableDataService } from './../my-table-data.service';
+
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
+  providers: [MyTableDataService]
 })
 export class AddProductComponent {
+
+    constructor(myTableDataService: MyTableDataService){}
 
   product: Product;
   private id: number;

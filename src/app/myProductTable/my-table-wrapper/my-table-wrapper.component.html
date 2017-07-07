@@ -1,10 +1,10 @@
 <h1>Products List</h1>
-<select (change)="selectedProduct($event.target.value)" >
+<select (change)="selectedProduct($event)" >
     <option [value]="0">All</option>
     <option [value]="1">1</option>
     <option [value]="2">2</option>
     <option [value]="3">3</option>
 </select>
 <hr />
-<my-table rows="50" [categoryID]="categoryValue" (delete)=deleteProduct($event)></my-table>
-<app-add-product (add)=addProduct($event)></app-add-product>
+<my-table rows="50" [categoryID]="categoryValue" (delete)=onDelete($event) [products]="products"></my-table>
+<app-add-product (add)=onAdd($event)></app-add-product>
